@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1 id="zoo">Sở thú của hiếu</h1>
+    <input id="inputAnimal" type="text" placeholder="Write something" />
+    <br />
+    <br />
+    <input
+      type="submit"
+      value="Thêm mới"
+      onclick="addAnimal(document.getElementById('inputAnimal').value);"
+    />
+    <input
+      type="submit"
+      value="Kiểm tra"
+      onclick="checkExists(document.getElementById('inputAnimal').value);"
+    />
+    <input
+      type="submit"
+      value="Xóa"
+      onclick="removeAnimal(document.getElementById('inputAnimal').value);"
+    />
+    <input type="submit" value="Hiển thị danh sách" onclick="printAnimal();" />
+    <script>
+      var zoo = new Set(["Tiger", "Lion", "Horse", "Eagle"]);
+      // Thêm mới thú vào sở thú
+      addAnimal = async (animal) => {
+        zoo.add(animal);
+        document.getElementById("zoo").innerHTML = "Thêm thành công";
+        doi();
+      };
+      // Kiểm tra thú trong sở thú
+      checkExists = async (animal) => {
+        v = zoo.has(animal);
+        if (v) {
+          document.getElementById("zoo").innerHTML = "Tồn tại";
+        } else {
+          document.getElementById("zoo").innerHTML = "Không tồn tại";
+        }
+        doi();
+      };
+      // Xóa thú trong sở thú
+      removeAnimal = async (animal) => {
+        v = zoo.delete(animal);
+        if (v) {
+          document.getElementById("zoo").innerHTML = "Đã xóa";
+        } else {
+          document.getElementById("zoo").innerHTML =
+            "Chưa xóa được vì không tồn tại";
+        }
+        doi();
+      };
+      // Hiển thị danh sách sở thú
+      printAnimal = async () => {
+        const arr = [...zoo];
+        document.getElementById("zoo").innerHTML = arr.join(",");
+        doi();
+      };
+      async function doi() {
+        await wait(2000);
+        document.getElementById("zoo").innerHTML = "Sở thú của hiếu";
+      }
+      function wait(time) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, time);
+        });
+      }
+    </script>
+  </body>
+</html>

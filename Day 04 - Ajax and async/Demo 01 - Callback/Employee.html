@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Employee {
+        constructor(code, salary, firstName, lastName) {
+          this.code = code;
+          this.salary = salary;
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+        getFullName() {
+          return this.firstName + " " + this.lastName;
+        }
+        getSalary() {
+          return this.salary;
+        }
+        getAunualSalary() {
+          return this.salary * 12;
+        }
+        raiseSalary(pesent) {
+          this.salary += (this.salary * pesent) / 100;
+        }
+      }
+      class partTimeEmployees extends Employee {
+        constructor(code, firstName, lastName, hourlywage) {
+          super(code, firstName, lastName);
+          this.hourlywage = hourlywage;
+          this.salaryAnnual = [];
+        }
+        getTimekeeping(month, noOfHours) {
+          if (month > 0 && month < 13) {
+            this.salaryAnnual[month] = parseInt(noOfHours);
+          } else this.salaryAnnual[month] = 0;
+        }
+        getSalary(m = new Date().getMonth()) {
+          let noOfHours = this.salaryAnnual[m + 1];
+          return noOfHours > 0 ? noOfHours * this.hourlywage : 0;
+        }
+        getAunualSalary() {
+          var total = 0;
+          this.salaryAnnual.map((item) => {
+            total += item;
+          });
+          return total * this.hourlywage;
+        }
+        raiseSalary(pesent) {
+          this.hourlywage += (this.hourlywage * pesent) / 100;
+        }
+      }
+
+      // let employee = new Employee("NV001", 1000, "Hoàng", "Hiếu");
+      // console.log(employee.getFullName());
+      // console.log(employee.getSalary());
+      // employee.raiseSalary(10);
+      // console.log(employee.getSalary());
+      let peny = new partTimeEmployees("NV001", "Hoàng", "Hiếu", 20);
+      peny.getTimekeeping(8, 30);
+      peny.getTimekeeping(9, 40);
+      console.log("Lương hiện tại của là : " + peny.getSalary());
+      console.log("Lương cả năm là : " + peny.getAunualSalary());
+    </script>
+  </body>
+</html>

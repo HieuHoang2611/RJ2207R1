@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript function to check whether a given value is US zip code or not</title>
+</head>
+<body class="classmaintainer">
+    <form action="#">
+        <input id="text" type="text" placeholder="Nhập cái gì đó đi bạn">
+        <!-- custom thông báo trên html
+        oninvalid="this.setCustomValidity('Thông báo tùy chỉnh')" //
+        //onvalid="this.setCustomValidity('')">
+        -->
+        <input type="email" placeholder="Địa chỉ mail">
+        <input type="submit" value="Submit" onclick="changeRequied(this)">
+    </form>
+    <script>
+        // custom thông báo trên javascript
+    function changeRequied(obj){
+        input = document.getElementById("text");
+
+         input.setAttribute("required", ""); // set thuộc tính required
+         if(input.value== '')
+         input.setCustomValidity('Nhập chưa đúng r')
+         else
+         input.setCustomValidity('')
+        //.removeAttribute("required") Xóa required
+        console.log(input);
+
+    }
+    function IsEmail(str) {
+        regexp = /^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)$;/;
+        if (regexp.test(str)) {
+            console.log("Email");
+        }
+       else return console.log("Not Email");;
+}
+    </script>
+</body>
+</html>

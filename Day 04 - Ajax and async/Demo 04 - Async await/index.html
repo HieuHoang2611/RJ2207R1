@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let promise1 = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          resolve("promise1");
+        }, 2000);
+      });
+      let promise2 = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          resolve("promise2");
+        }, 4000);
+      });
+
+      async function asyncFun() {
+        console.log(new Date().getUTCSeconds());
+        let result1 = await promise1;
+        let result2 = await promise2;
+        console.log(result1);
+        console.log(result2);
+        console.log(new Date().getUTCSeconds());
+      }
+      //   let result = await asyncFun();
+      //   console.log(result);
+      //   console.log(asyncFun()); //  hàm có async luôn luôn trả về 1 promise
+      asyncFun();
+    </script>
+  </body>
+</html>
